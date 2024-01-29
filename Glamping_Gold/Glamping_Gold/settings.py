@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customer',
     'service',
-     'cabin_type',
+    'cabin_type',
+    'cabin',
 ]
 
 MIDDLEWARE = [
