@@ -12,4 +12,12 @@ def change_status_service(request, service_id):
     service.status = not service.status
     service.save()
     return redirect('service')
-# Create your views here.
+
+from .forms import ServiceForm
+
+def create_service(request):
+    form = ServiceForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('service')    
+    return render(request, 'service/create.html', {'form': form})
