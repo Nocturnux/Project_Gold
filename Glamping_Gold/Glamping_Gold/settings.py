@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customer',
     'service',
-    'booking',
     'cabin_type',
+    'cabin',
+    'booking',
     'payment',
 ]
 
