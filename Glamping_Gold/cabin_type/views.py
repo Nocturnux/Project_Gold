@@ -12,4 +12,11 @@ def change_status_cabin_type(request, cabin_type_id):
     cabin_type.save()
     return redirect('cabin_type')
 
-# Create your views here.
+from .forms import Cabin_typeForm
+
+def create_cabin_type(request):
+    form = Cabin_typeForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('cabin_type')    
+    return render(request, 'cabin_type/create.html', {'form': form})
