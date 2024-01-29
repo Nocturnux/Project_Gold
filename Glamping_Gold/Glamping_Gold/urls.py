@@ -24,5 +24,9 @@ urlpatterns = [
     path('customer/', include('customer.urls')),
     path('service/', include('service.urls')),
     path('booking/', include('booking.urls')),  
-    path('cabin_type/', include('cabin_type.urls')),  
+    path('cabin_type/', include('cabin_type.urls')),
+    path('payment/', include('payment.urls')), 
+    path('cabin/', include('cabin.urls')),  
+    path('booking_service/', include('booking_service.urls')),
+    
 ]
