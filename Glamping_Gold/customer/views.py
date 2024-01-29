@@ -12,3 +12,12 @@ def change_status_customer(request, customer_id):
     customer.status = not customer.status
     customer.save()
     return redirect('customer')
+
+from .forms import CustomerForm
+
+def create_customer(request):
+    form = CustomerForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('customer')    
+    return render(request, 'customer/create.html', {'form': form})

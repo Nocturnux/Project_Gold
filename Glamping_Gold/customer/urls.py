@@ -3,5 +3,6 @@ from django.urls import path
 
 urlpatterns = [      
     path('', views.customer, name='customer'),
-    path('customer_status_/<int:customer_id>/', views.change_status_customer, name='customer_status'),           
+    path('customer_status_/<int:customer_id>/', views.change_status_customer, name='customer_status'),
+    path('create/', views.create_customer, name='create_customer'),           
 ]
