@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('customer/', include('customer.urls')),
-    path('service/', include('service.urls')),    
+    path('service/', include('service.urls')),  
+    path('cabin_type/', include('cabin_type.urls')),  
 ]
