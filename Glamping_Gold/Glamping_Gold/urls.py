@@ -22,11 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('customer/', include('customer.urls')),
-<<<<<<< HEAD
     path('service/', include('service.urls')),
     path('booking/', include('booking.urls')), 
-=======
     path('service/', include('service.urls')),  
-    path('cabin_type/', include('cabin_type.urls')),  
->>>>>>> fe4dae194fa5954d69c7eb8b50fc12046818b7f6
+    path('cabin_type/', include('cabin_type.urls')),
+    path('payment/', include('payment.urls')),
 ]
