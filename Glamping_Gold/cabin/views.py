@@ -8,8 +8,8 @@ def cabin(request):
     return render(request, 'cabin/index.html', {'cabin_list': cabin_list})
 
 def change_status_cabin(request, cabin_id):
-    cabin = cabin.objects.get(pk=cabin_id)
+    cabin = Cabin.objects.get(pk=cabin_id)
     cabin.status = not cabin.status
     cabin.save()
-    return redirect('books')
+    return redirect('cabin')
 # Create your views here.
