@@ -11,7 +11,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">            
-            <a href="" class="btn btn-primary btn-icon-split mb-3">
+            <a href="{% url 'create_cabin' %}" class="btn btn-primary btn-icon-split mb-3">
                 <span class="icon text-white-50">
                   <i class="fas fa-plus"></i>
               </span>
@@ -37,7 +37,7 @@
                     <td>{{ cabin.image }}</td>
                     <td>{{ cabin.name }}</td>
                     <td>{{ cabin.capacity }}</td>
-                    <td>{{ cabin.typecabin }}</td>
+                    <td>{{ cabin.cabi_type }}</td>
                     <td>{{ cabin.description }}</td>
                     <td>
                         <form action="{% url 'cabin_status' cabin.id %}" method="POST">
@@ -66,6 +66,4 @@
         </div>
     </div>
 </div>
-
-
 {% endblock %}

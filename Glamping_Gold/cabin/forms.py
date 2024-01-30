@@ -1,28 +1,30 @@
 from django import forms
-from . models import Book
+from . models import Cabin
 
-from authors.models import Author
+from cabin_type.models import Cabin_type
 
 class CabinForm(forms.ModelForm):
-    author = forms.ModelChoiceField(queryset=Author.objects.filter(status=True).order_by('name'))
+    cabin_type = forms.ModelChoiceField(queryset=Cabin_type.objects.filter(status=True).order_by('name'))
     class Meta:
-        model = Book
+        model = Cabin
         fields = "__all__"
-        exclude = ['status']
+        exclude = ['status',]
+        
         labels = {
-            'code': 'Código',
-            'title': 'Título',
-            'description': 'Descripción',
-            'publication_date': 'Fecha de publicación',
-            'price': 'Precio',
+            'name': 'Nombre',
             'image': 'Imagen',
-            'author': 'Autor',                      
+            'capacity': 'Capacidad',
+            'description': 'Descripción',
+            'value': 'valor',
+            'cabin_type': 'Tipo Cabaña'
+                                 
         }
         widgets = {
-            'code': forms.TextInput(attrs={'placeholder': 'Ingrese el código del libro'}),
-            'title': forms.TextInput(attrs={'placeholder': 'Ingrese el título del libro'}),
-            'description': forms.TextInput(attrs={'placeholder': 'Ingrese la descripción del libro'}), 
-            'publication_date': forms.DateInput(attrs={'type':'date'}),
-            'price': forms.NumberInput(attrs={'placeholder': 'Ingrese el precio del libro'}),          
-            'image': forms.FileInput(attrs={'placeholder': 'Ingrese la imagen del libro'}),
+            'name': forms.TextInput(attrs={'placeholder': 'Ingrese el nombre de la cabaña'}),
+            'image': forms.FileInput(attrs={'placeholder': 'Ingrese la imagen de la cabaña'}),
+            'capacity': forms.TextInput(attrs={'placeholder': 'Ingrese el título del libro'}),
+            'description': forms.TextInput(attrs={'placeholder': 'Ingrese la descripción de la cabaña'}), 
+            'value': forms.NumberInput(attrs={'placeholder': 'Ingrese el valor de la cabaña'}),  
+            'Tipo Cabaña': forms.ModelChoiceField(queryset=Cabin_type.objects.filter(status=True).order_by('name'))        
+
         }

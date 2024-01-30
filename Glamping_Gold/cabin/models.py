@@ -7,7 +7,7 @@ class Cabin(models.Model):
     description = models.TextField(max_length=255)
     value = models.IntegerField()
     status = models.BooleanField(default=True)
-    id_cabinType = models.ForeignKey('cabin_type.Cabin_type', on_delete=models.DO_NOTHING)
+    id_cabin_type = models.ForeignKey('cabin_type.Cabin_type', on_delete=models.DO_NOTHING)
 
 def __str__(self):
-    return self.title
+    return self.name
