@@ -1,7 +1,8 @@
 
 from django.shortcuts import render, redirect
-
+from .forms import Cabin_typeForm
 from cabin_type.models import Cabin_type
+
 def cabin_type(request):    
     cabin_type_list = Cabin_type.objects.all()    
     return render(request, 'cabin_type/index.html', {'cabin_type_list': cabin_type_list})
@@ -12,7 +13,7 @@ def change_status_cabin_type(request, cabin_type_id):
     cabin_type.save()
     return redirect('cabin_type')
 
-from .forms import Cabin_typeForm
+
 
 def create_cabin_type(request):
     form = Cabin_typeForm(request.POST or None)
