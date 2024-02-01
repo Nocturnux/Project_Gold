@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-
+from .forms import CustomerForm
 from customer.models import Customer
 
 from .forms import CustomerForm

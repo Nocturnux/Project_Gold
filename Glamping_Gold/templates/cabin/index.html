@@ -32,7 +32,7 @@
                 <tbody>
                     {% for cabin in cabin_list %}
                     <tr>
-                    <td>{{ cabin.image }}</td>
+                    <td><img src="{{ cabin.image.url }}" alt="" width="50"></td>
                     <td>{{ cabin.name }}</td>
                     <td>{{ cabin.capacity }}</td>
                     <td>{{ cabin.cabin_type  }}</td>
@@ -47,7 +47,7 @@
                         </form>
                     </td>
                     <td>
-                        <a href="" class="btn btn-info btn-circle btn-sm">
+                        <a href="" class="btn btn-info btn-circle btn-sm"data-bs-toggle="modal" data-bs-target="#modalId" data-cabin-id="{{ cabin.id }}">
                             <i class="fas fa-info-circle"></i>
                         </a>
                         <a href="" class="btn btn-warning btn-circle btn-sm">
@@ -64,4 +64,60 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">Detalles de la Cabaña</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid" id="cabin-details"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Función para cargar detalles del libro en el modal
+function loadCabinDetails(cabinId) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "{% url 'detail_cabin' 0 %}".replace('0', cabinId), true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    console.log(data);
+                    // Actualizar el contenido del modal con los detalles del libro
+                    document.getElementById("cabin-details").innerHTML =
+                        "<p><strong>Nombre:</strong> " + data.name + "</p>" +
+                        "<p><strong>Imagen:</strong> " + data.image + "</p>" +
+                        "<p><strong>Capacidad:</strong> " + data.capacity + "</p>" +
+                        "<p><strong>Descripción:</strong> " + data.description + "</p>" +
+                        "<p><strong>Valor:</strong> " + data.value + "</p>";                
+                    $('#modalId').modal('show'); // Mover esta línea aquí
+                } else {
+                    console.error('Error fetching cabin details. Status code: ' + xhr.status);
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    // Asignar evento click a los botones de detalle del libro
+    document.addEventListener("click", function (event) {
+        if (event.target && event.target.dataset.cabinId) {
+            event.stopPropagation();
+            var cabinId = event.target.dataset.cabinId;
+            loadAuthorDetails(cabinId);
+        }
+    });
+
+</script>
 {% endblock %}
