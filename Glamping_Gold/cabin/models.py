@@ -2,7 +2,7 @@ from django.db import models
 
 class Cabin(models.Model):
     name = models.TextField(max_length=100)
-    image = models.ImageField(upload_to='cabin_images', null=True)
+    image = models.ImageField(upload_to='static/cabin_images', null=True)
     capacity = models.CharField(max_length=50)
     description = models.TextField(max_length=255)
     value = models.IntegerField()

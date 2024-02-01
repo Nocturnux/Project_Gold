@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-
+from .forms import CustomerForm
 from customer.models import Customer
 
 def customer(request):    
@@ -12,8 +12,6 @@ def change_status_customer(request, customer_id):
     customer.status = not customer.status
     customer.save()
     return redirect('customer')
-
-from .forms import CustomerForm
 
 def create_customer(request):
     form = CustomerForm(request.POST or None)
