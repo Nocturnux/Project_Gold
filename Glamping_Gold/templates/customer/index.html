@@ -110,7 +110,7 @@ function loadCustomerDetails(customerId) {
         if (event.target && event.target.dataset.customerId) {
             event.stopPropagation();
             var customerId = event.target.dataset.customerId;
-            loadAuthorDetails(customerId);
+            loadCustomerDetails(customerId);
         }
     });
 
