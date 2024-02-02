@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from payment.models import Payment
 from .forms import PaymentForm
+from django.http import JsonResponse
+from django.contrib import messages
 
 def payment(request):    
     payment_list = Payment.objects.all()    
@@ -18,3 +20,17 @@ def create_payment(request):
         form.save()
         return redirect('payment')    
     return render(request, 'payment/create.html', {'form': form})
+
+def detail_payment(request, payment_id):
+    payment = Payment.objects.get(pk=payment_id)
+    data = { 'date': payment.date, 'payment_method': payment.payment_method, 'value': payment.value, 'state_payment': payment.state_payment }    
+    return JsonResponse(data)
+
+def delete_payment(request, payment_id):
+    payment = Payment.objects.get(pk=payment_id)
+    try:
+        payment.delete()        
+        messages.success(request, 'Pago eliminado corretamente.')
+    except:
+        messages.error(request, 'No se puede eliminar el pago porque está asociado a una reserva.')
+    return redirect('payment')
