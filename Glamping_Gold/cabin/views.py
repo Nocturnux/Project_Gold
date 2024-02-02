@@ -23,7 +23,7 @@ def create_cabin(request):
 
 def detail_cabin(request, cabin_id):
     cabin = Cabin.objects.get(pk=cabin_id)
-    data = { 'name': cabin.name, 'image': cabin.image, 'capacity': cabin.capacity, 'cabin_type': str(cabin.cabin_type), 'description': cabin.description,'value': cabin.value, }    
+    data = { 'name': cabin.name, 'image': cabin.image.url, 'capacity': cabin.capacity, 'cabin_type': str(cabin.cabin_type), 'description': cabin.description,'value': cabin.value } 
     return JsonResponse(data)
 
 # Create your views here.

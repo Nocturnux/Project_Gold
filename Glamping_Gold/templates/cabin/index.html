@@ -32,7 +32,7 @@
                 <tbody>
                     {% for cabin in cabin_list %}
                     <tr>
-                    <td><img src="{{ cabin.image.url }}" alt="" width="50"></td>
+                    <td><img src="{{ cabin.image.url }}" alt="" width="100"></td>
                     <td>{{ cabin.name }}</td>
                     <td>{{ cabin.capacity }}</td>
                     <td>{{ cabin.cabin_type  }}</td>
@@ -115,7 +115,7 @@ function loadCabinDetails(cabinId) {
         if (event.target && event.target.dataset.cabinId) {
             event.stopPropagation();
             var cabinId = event.target.dataset.cabinId;
-            loadAuthorDetails(cabinId);
+            loadCabinDetails(cabinId);
         }
     });
 
