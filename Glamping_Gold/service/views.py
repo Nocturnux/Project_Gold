@@ -17,7 +17,7 @@ def change_status_service(request, service_id):
     return redirect('service')
 
 def create_service(request):
-    form = ServiceForm(request.POST or None)
+    form = ServiceForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
         return redirect('service')    
@@ -25,7 +25,7 @@ def create_service(request):
 
 def detail_service(request, service_id):
     service = Service.objects.get(pk=service_id)
-    data = { 'name': service.name, 'image': service.image, 'description': service.description, 'value': service.value, 'status': service.status }    
+    data = { 'name': service.name, 'image': service.image.url, 'description': service.description, 'value': service.value, 'status': service.status }    
     return JsonResponse(data)
 
 def delete_service(request, service_id):

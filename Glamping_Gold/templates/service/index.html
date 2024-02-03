@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}Gold Glamping{% endblock %}
+
 {% block content %}
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h4 class="m-0 font-weight-bold text-primary">Servicios</h4>
@@ -19,7 +22,7 @@
                         <th>Nombre</th>
                         <th>Imagen</th>
                         <th>Descripción</th>
-                        <th>valor</th>
+                        <th>Valor</th>
                         <th>Estado</th>
                         <th>Acciones</th>                        
                     </tr>
@@ -27,8 +30,8 @@
                 <tbody>
                     {% for service in service %}
                     <tr>
+                    <td><img src="{{ service.image.url }}" alt="" width="50"></td>
                     <td>{{ service.name }}</td>
-                    <td>{{ service.image }}</td>
                     <td>{{ service.description }}</td>
                     <td>{{ service.value }}</td>
                     <!-- Toggle Switch button -->
@@ -92,7 +95,7 @@ function loadServiceDetails(serviceId) {
                     document.getElementById("service-details").innerHTML =
                         "<p><strong>Nombre:</strong> " + data.name + "</p>" +
                         "<p><strong>Imagen:</strong> " + data.image + "</p>" +
-                        "<p><strong>Descripcion:</strong> " + data.description + "</p>"
+                        "<p><strong>Descripcion:</strong> " + data.description + "</p>" +
                         "<p><strong>Valor:</strong> " + data.value + "</p>" +
                         "<p><strong>Estado:</strong> " + data.status + "</p>";               
                     $('#modalId').modal('show'); // Mover esta línea aquí

@@ -115,7 +115,7 @@ function loadCabinDetails(cabinId) {
         if (event.target && event.target.dataset.cabinId) {
             event.stopPropagation();
             var cabinId = event.target.dataset.cabinId;
-            loadAuthorDetails(cabinId);
+            loadCabinDetails(cabinId);
         }
     });
 
