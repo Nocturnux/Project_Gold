@@ -24,7 +24,7 @@
                         <th>Nombre</th>
                         <th>Capacidad</th>
                         <th>Tipo cabaña</th>
-                        <th>Descripcion</th>
+                        <th>Descripción</th>
                         <th>Estado</th>  
                         <th>Acciones</th>  
                     </tr>
@@ -32,7 +32,7 @@
                 <tbody>
                     {% for cabin in cabin_list %}
                     <tr>
-                    <td><img src="{{ cabin.image.url }}" alt="" width="50"></td>
+                    <td><img src="{{ cabin.image.url }}" alt="" width="100"></td>
                     <td>{{ cabin.name }}</td>
                     <td>{{ cabin.capacity }}</td>
                     <td>{{ cabin.cabin_type  }}</td>
@@ -47,14 +47,16 @@
                         </form>
                     </td>
                     <td>
-                        <a href="" class="btn btn-info btn-circle btn-sm"data-bs-toggle="modal" data-bs-target="#modalId" data-cabin-id="{{ cabin.id }}">
+                        <a href="" class="btn btn-info btn-circle btn-sm" data-bs-toggle="modal" data-bs-target="#modalId" data-cabin-id="{{ cabin.id }}">
                             <i class="fas fa-info-circle"></i>
                         </a>
                         <a href="" class="btn btn-warning btn-circle btn-sm">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="" class="btn btn-danger btn-circle btn-sm">
+                        
+                        <a href="{% url 'delete_cabin' cabin.id %}" class="deleteBtn btn btn-danger btn-circle btn-sm">
                             <i class="fas fa-trash"></i>
+                        </a>    
                         </a>
                     </td>
                     </tr>
@@ -98,6 +100,7 @@ function loadCabinDetails(cabinId) {
                     document.getElementById("cabin-details").innerHTML =
                         "<p><strong>Nombre:</strong> " + data.name + "</p>" +
                         "<p><strong>Imagen:</strong> " + data.image + "</p>" +
+                        "<img src="cabin.image.url" alt="Imagen"> " + data.image + 
                         "<p><strong>Capacidad:</strong> " + data.capacity + "</p>" +
                         "<p><strong>Descripción:</strong> " + data.description + "</p>" +
                         "<p><strong>Valor:</strong> " + data.value + "</p>";                
@@ -120,4 +123,36 @@ function loadCabinDetails(cabinId) {
     });
 
 </script>
+
+<script>
+    document.querySelectorAll('.deleteBtn').forEach(function(deleteBtn) {
+    deleteBtn.addEventListener('click', function (event) {
+        event.preventDefault(); 
+
+        swal({
+            title: "Estás seguro que deseas eliminar?",            
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {                
+                window.location.href = this.getAttribute('href');              
+            }
+        });
+    });
+});
+</script>
+
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            swal({                
+                text: "{{ message }}",
+                icon: "{{ message.tags }}",
+                button: "OK",
+            });
+        </script>
+    {% endfor %}
+{% endif %}
 {% endblock %}

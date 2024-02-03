@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import CabinForm
 from cabin.models import Cabin
 from django.http import JsonResponse
+from django.contrib import messages
 
 def cabin(request):    
     cabin_list = Cabin.objects.all()    
@@ -23,7 +24,17 @@ def create_cabin(request):
 
 def detail_cabin(request, cabin_id):
     cabin = Cabin.objects.get(pk=cabin_id)
-    data = { 'name': cabin.name, 'image': cabin.image, 'capacity': cabin.capacity, 'cabin_type': str(cabin.cabin_type), 'description': cabin.description,'value': cabin.value, }    
+    data = { 'name': cabin.name, 'image': cabin.image.url, 'capacity': cabin.capacity, 'cabin_type': str(cabin.cabin_type), 'description': cabin.description,'value': cabin.value, } 
     return JsonResponse(data)
+
+
+def delete_cabin(request, cabin_id):
+    cabin = Cabin.objects.get(pk=cabin_id)
+    try:
+        cabin.delete()        
+        messages.success(request, 'Cabaña eliminada correctamente.')
+    except:
+        messages.error(request, 'No se puede eliminar la cabaña.')
+    return redirect('cabin')
 
 # Create your views here.
