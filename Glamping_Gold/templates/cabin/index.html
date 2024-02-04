@@ -100,7 +100,7 @@ function loadCabinDetails(cabinId) {
                     document.getElementById("cabin-details").innerHTML =
                         "<p><strong>Nombre:</strong> " + data.name + "</p>" +
                         "<p><strong>Imagen:</strong> " + data.image + "</p>" +
-                        "<img src="cabin.image.url" alt="Imagen"> " + data.image + 
+                        "<p><strong>Imagen:</strong> <img src='" + data.image + "' alt='Cabin Image' style='width: 50%; max-width: 200px; height: auto;'></p>" +
                         "<p><strong>Capacidad:</strong> " + data.capacity + "</p>" +
                         "<p><strong>Descripción:</strong> " + data.description + "</p>" +
                         "<p><strong>Valor:</strong> " + data.value + "</p>";                
