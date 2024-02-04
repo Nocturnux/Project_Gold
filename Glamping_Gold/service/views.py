@@ -1,6 +1,4 @@
-from django.shortcuts import render
 from django.shortcuts import render, redirect
-
 from service.models import Service
 from .forms import ServiceForm
 from django.http import JsonResponse

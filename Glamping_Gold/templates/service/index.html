@@ -28,9 +28,9 @@
                     </tr>
                 </thead>                
                 <tbody>
-                    {% for service in service %}
+                    {% for service in service_list %}
                     <tr>
-                    <td><img src="{{ service.image.url }}" alt="" width="50"></td>
+                    <td><img src="{{ service.image.url }}" alt="" width="100"></td>
                     <td>{{ service.name }}</td>
                     <td>{{ service.description }}</td>
                     <td>{{ service.value }}</td>
