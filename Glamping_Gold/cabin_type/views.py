@@ -18,16 +18,19 @@ def change_status_cabin_type(request, cabin_type_id):
 
 def create_cabin_type(request):
     form = Cabin_typeForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+    if form.is_valid() and request.method == 'POST':
+        try:
+            form.save()
+            messages.success(request, 'Tipo de cabaña creado correctamente.')
+        except:
+            messages.error(request, 'Ocurrió un error al crear el Tipo de cabaña.')        
         return redirect('cabin_type')    
-    return render(request, 'cabin_type/create.html', {'form': form})
+    return render(request, 'cabin_type/editar.html', {'form': form})
 
 def detail_cabin_type(request, cabin_type_id):
     cabin_type = Cabin_type.objects.get(pk=cabin_type_id)
-    data = { 'name': cabin_type.name }    
+    data = { 'name': cabin_type.name, }    
     return JsonResponse(data)
-
 
 def delete_cabin_type(request, cabin_type_id):
     cabin_type = Cabin_type.objects.get(pk=cabin_type_id)
@@ -37,3 +40,15 @@ def delete_cabin_type(request, cabin_type_id):
     except:
         messages.error(request, 'No se puede eliminar el tipo de cabaña porque está asociado a una cabaña.')
     return redirect('cabin_type')
+
+def edit_cabin_type(request, cabin_type_id):
+    cabin_type = Cabin_type.objects.get(pk=cabin_type_id)
+    form = Cabin_typeForm(request.POST or None, instance=cabin_type)
+    if form.is_valid() and request.method == 'POST':
+        try:
+            form.save()
+            messages.success(request, 'Tipo de cabaña actualizado correctamente.')
+        except:
+            messages.error(request, 'Ocurrió un error al editar el Tipo de cabaña.')        
+        return redirect('cabin_type')    
+    return render(request, 'cabin_type/editar.html', {'form': form})

@@ -87,7 +87,7 @@
 </div>
 
 <script>
-// Función para cargar detalles del libro en el modal
+// Función para cargar detalles de la cabaña
 function loadCabinDetails(cabinId) {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "{% url 'detail_cabin' 0 %}".replace('0', cabinId), true);
@@ -96,10 +96,9 @@ function loadCabinDetails(cabinId) {
                 if (xhr.status == 200) {
                     var data = JSON.parse(xhr.responseText);
                     console.log(data);
-                    // Actualizar el contenido del modal con los detalles del libro
+                    // Actualizar el contenido del modal con los detalles de la cabaña
                     document.getElementById("cabin-details").innerHTML =
                         "<p><strong>Nombre:</strong> " + data.name + "</p>" +
-                        "<p><strong>Imagen:</strong> " + data.image + "</p>" +
                         "<p><strong>Imagen:</strong> <img src='" + data.image + "' alt='Cabin Image' style='width: 50%; max-width: 200px; height: auto;'></p>" +
                         "<p><strong>Capacidad:</strong> " + data.capacity + "</p>" +
                         "<p><strong>Descripción:</strong> " + data.description + "</p>" +
@@ -113,7 +112,7 @@ function loadCabinDetails(cabinId) {
         xhr.send();
     }
 
-    // Asignar evento click a los botones de detalle del libro
+    // Asignar evento click a los botones de detalle de la cabaña
     document.addEventListener("click", function (event) {
         if (event.target && event.target.dataset.cabinId) {
             event.stopPropagation();
