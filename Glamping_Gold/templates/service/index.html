@@ -94,7 +94,7 @@ function loadServiceDetails(serviceId) {
                     // Actualizar el contenido del modal con los detalles del libro
                     document.getElementById("service-details").innerHTML =
                         "<p><strong>Nombre:</strong> " + data.name + "</p>" +
-                        "<p><strong>Imagen:</strong> " + data.image + "</p>" +
+                        "<p><strong>Imagen:</strong> <img src='" + data.image + "' alt='Cabin Image' style='width: 50%; max-width: 200px; height: auto;'></p>" +
                         "<p><strong>Descripcion:</strong> " + data.description + "</p>" +
                         "<p><strong>Valor:</strong> " + data.value + "</p>" +
                         "<p><strong>Estado:</strong> " + data.status + "</p>";               
