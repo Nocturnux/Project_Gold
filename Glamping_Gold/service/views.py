@@ -27,7 +27,7 @@ def create_service(request):
 
 def detail_service(request, service_id):
     service = Service.objects.get(pk=service_id)
-    data = { 'name': service.name, 'image': service.image.url, 'description': service.description, 'value': service.value, 'status': service.status }    
+    data = {  'image': service.image.url, 'name': service.name, 'description': service.description, 'value': service.value, 'status': service.status }    
     return JsonResponse(data)
 
 def delete_service(request, service_id):
