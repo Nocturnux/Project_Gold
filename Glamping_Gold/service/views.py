@@ -16,14 +16,18 @@ def change_status_service(request, service_id):
 
 def create_service(request):
     form = ServiceForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
+    if form.is_valid() and request.method == 'POST':
+        try:
+            form.save()
+            messages.success(request, 'Servicio creado correctamente.')
+        except:
+            messages.error(request, 'Ocurrió un error al crear el Servicio.')        
         return redirect('service')    
     return render(request, 'service/create.html', {'form': form})
 
 def detail_service(request, service_id):
     service = Service.objects.get(pk=service_id)
-    data = { 'name': service.name, 'image': service.image.url, 'description': service.description, 'value': service.value, 'status': service.status }    
+    data = {  'image': service.image.url, 'name': service.name, 'description': service.description, 'value': service.value, 'status': service.status }    
     return JsonResponse(data)
 
 def delete_service(request, service_id):
@@ -34,3 +38,15 @@ def delete_service(request, service_id):
     except:
         messages.error(request, 'No se puede eliminar el servicio porque está asociada a una reserva.')
     return redirect('service')
+
+def edit_service(request, service_id):
+    service = Service.objects.get(pk=service_id)
+    form = ServiceForm(request.POST or None, instance=service)
+    if form.is_valid() and request.method == 'POST':
+        try:
+            form.save()
+            messages.success(request, 'Servicio actualizado correctamente.')
+        except:
+            messages.error(request, 'Ocurrió un error al editar el Servicio.')        
+        return redirect('service')    
+    return render(request, 'service/editar.html', {'form': form})
