@@ -1,24 +1,21 @@
 <form action="" method="POST">
-    {% csrf_token %}
-
-    {% for field in form %}
-    <div class="mb-3">
-      <label for="" class="form-label">{{field.label}}</label>
-      <input type="{{field.field.widget.input_type}}"
-        class="form-control" 
-        name="{{field.name}}" 
-<<<<<<< HEAD
-        id="" aria-describedby="helpId" 
-        placeholder="{{field.field.widget.attrs.placeholder}} " 
-        value="{{field.value | default:'' }}">
-=======
-        id="" 
-        aria-describedby="helpId" 
-        placeholder="{{field.field.widget.attrs.placeholder}}">
->>>>>>> ac18a7163deed255ecb4050f8ad5fa7b26994a24
-        <small id="helpId" class="form-text text-danger">{{field.errors}}</small>
+        {% csrf_token %}
         
-    </div>
-    {% endfor %}
-    <button type="submit" class="btn btn-primary">Enviar</button>
+        {% for field in form %}
+        <div class="mb-3">
+
+                <label for="" class="form-label">{{field.label}}</label>
+                <input 
+                type="{{field.field.widget.input_type}}"
+                class="form-control" 
+                name="{{field.name}}" 
+                id="" 
+                aria-describedby="helpId" 
+                placeholder="{{field.field.widget.attrs.placeholder}}"
+                value="{{field.value | default:'' }}"
+        >
+        <small id="helpId" class="form-text text-danger">{{field.errors}}</small>        
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
