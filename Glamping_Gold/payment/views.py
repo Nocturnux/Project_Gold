@@ -34,3 +34,15 @@ def delete_payment(request, payment_id):
     except:
         messages.error(request, 'No se puede eliminar el pago porque está asociado a una reserva.')
     return redirect('payment')
+
+def edit_payment(request, payment_id):
+    payment = Payment.objects.get(pk=payment_id)
+    form = PaymentForm(request.POST or None, request.FILES or None, instance=payment)
+    if form.is_valid() and request.method == 'POST':
+        try:
+            form.save()
+            messages.success(request, 'Pago actualizado correctamente.')
+        except:
+            messages.error(request, 'Ocurrió un error al editar el pago.')
+        return redirect('payment')    
+    return render(request, 'payment/edit.html', {'form': form})
