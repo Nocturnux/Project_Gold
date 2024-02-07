@@ -37,4 +37,16 @@ def delete_cabin(request, cabin_id):
         messages.error(request, 'No se puede eliminar la cabaña.')
     return redirect('cabin')
 
+def edit_cabin(request, cabin_id):
+    cabin = Cabin.objects.get(pk=cabin_id)
+    form = CabinForm(request.POST or None, request.FILES or None, instance=cabin)
+    if form.is_valid() and request.method == 'POST':
+        try:
+            form.save()
+            messages.success(request, 'Cabaña actualizada correctamente.')
+        except:
+            messages.error(request, 'Ocurrió un error al editar la cabaña.')
+        return redirect('cabin')    
+    return render(request, 'cabin/edit.html', {'form': form})
+
 # Create your views here.

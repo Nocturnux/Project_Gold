@@ -5,6 +5,7 @@ from cabin_type.models import Cabin_type
 
 class CabinForm(forms.ModelForm):
     cabin_type = forms.ModelChoiceField(queryset=Cabin_type.objects.filter(status=True).order_by('name'))
+    
     class Meta:
         model = Cabin
         fields = "__all__"
@@ -15,6 +16,7 @@ class CabinForm(forms.ModelForm):
             'image': 'Imagen',
             'capacity': 'Capacidad',
             'description': 'Descripción',
+            'cabin_type': 'Tipo de cabaña',
             'value': 'valor',                                   
         }
         widgets = {
