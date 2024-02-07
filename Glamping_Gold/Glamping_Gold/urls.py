@@ -28,5 +28,6 @@ urlpatterns = [
     path('payment/', include('payment.urls')), 
     path('cabin/', include('cabin.urls')),  
     path('booking_service/', include('booking_service.urls')),
-    path('booking_cabin/', include('booking_cabin.urls')),    
+    path('booking_cabin/', include('booking_cabin.urls')),
+    path('login/', views.login, name = 'login'),    
 ]
