@@ -84,10 +84,10 @@ function loadCabin_typeDetails(cabin_typeId) {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
                     var data = JSON.parse(xhr.responseText);
-                    console.log(data);
+                    console.log(data.name);
                     // Actualizar el contenido del modal con los detalles del tipo de cabaña
                     document.getElementById("cabin_type-details").innerHTML =
-                        "<p><strong>Nombre:</strong> " + data.name + "</p>" +               
+                        "<p><strong>Nombre:</strong> " + data.name + "</p>";               
                     $('#modalId').modal('show'); // Mover esta línea aquí
                 } else {
                     console.error('Error fetching cabin_type details. Status code: ' + xhr.status);
