@@ -7,5 +7,4 @@ class Booking_service(models.Model):
     
 
     def __str__(self):
-        return self.name
-# Create your models here.
+        return str(self.value)
