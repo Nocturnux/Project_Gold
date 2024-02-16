@@ -48,7 +48,7 @@ def create_booking(request):
                 
         for i in range(len(cabin_Id)):            
             cabin = Cabin.objects.get(pk=int(cabin_Id[i]))
-            booking_cabin = Booking_service.objects.create(
+            booking_cabin = Booking_cabin.objects.create(
                 booking=booking,
                 cabin=cabin,
                 value=cabin_value[i]
