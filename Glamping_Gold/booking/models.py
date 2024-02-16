@@ -9,4 +9,4 @@ class Booking(models.Model):
     customer = models.ForeignKey('customer.Customer', on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.date_booking
+        return str(self.date_booking)

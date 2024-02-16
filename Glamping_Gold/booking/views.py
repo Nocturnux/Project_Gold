@@ -14,12 +14,6 @@ def booking(request):
     booking_list = Booking.objects.all()    
     return render(request, 'booking/index.html', {'booking_list': booking_list})
 
-def change_status_booking(request, booking_id):
-    booking = Booking.objects.get(pk=booking_id)
-    booking.status = not booking.status
-    booking.save()
-    return redirect('booking')
-
 
 def create_booking(request):
     customer_list = Customer.objects.all()
@@ -53,7 +47,7 @@ def create_booking(request):
                 cabin=cabin,
                 value=cabin_value[i]
             )
-            Booking_cabin.save()
+            booking_cabin.save()
         
         for i in range(len(service_Id)):
             service = Service.objects.get(pk=int(service_Id[i]))
@@ -70,9 +64,15 @@ def create_booking(request):
 def detail_booking(request, booking_id):
     booking = Booking.objects.get(pk=booking_id)
     booking_cabin = Booking_cabin.objects.filter(booking=booking)
-    booking_service = Booking_cabin.objects.filter(booking=booking)
+    booking_service = Booking_service.objects.filter(booking=booking)
     payment = Payment.objects.filter(booking=booking)
     return render(request, 'booking/detail.html', {'booking': booking, 'booking_cabin': booking_cabin, 'booking_service': booking_service, 'payment': payment})
+
+def change_status_booking(request, booking_id):
+    booking = Booking.objects.get(pk=booking_id)
+    booking.status = not booking.status
+    booking.save()
+    return redirect('booking')
 
 
 
