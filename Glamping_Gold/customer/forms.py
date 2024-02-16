@@ -10,13 +10,11 @@ class CustomerForm(forms.ModelForm):
             'name': 'Nombre',
             'document': 'Documento',
             'cellphone': 'Celular',
-            'email': 'Correo',
             'status': 'Estado',                      
         }
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Ingresa el nombre'}),
             'document': forms.TextInput(attrs={'placeholder': 'Ingresa el documento'}),
-            'cellphone': forms.TextInput(attrs={'placeholder': 'Ingresa el celular'}),   
-            'email': forms.TextInput(attrs={'placeholder': 'Ingresa el correo'}),
+            'cellphone': forms.TextInput(attrs={'placeholder': 'Ingresa el celular'}),
             'status': forms.TextInput(attrs={'placeholder': 'Ingresa el estado'}),          
         }

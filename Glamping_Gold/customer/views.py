@@ -25,12 +25,12 @@ def create_customer(request):
             messages.success(request, 'Cliente creado correctamente.')
         except:
             messages.error(request, 'Ocurrió un error al crear el cliente.')        
-        return redirect('authors')    
+        return redirect('customer')    
     return render(request, 'customer/create.html', {'form': form})
 
 def detail_customer(request, customer_id):
     customer = Customer.objects.get(pk=customer_id)
-    data = { 'name': customer.name, 'document': customer.document, 'cellphone': customer.cellphone, 'email': customer.email, 'status': customer.status }    
+    data = { 'name': customer.name, 'document': customer.document, 'cellphone': customer.cellphone, 'status': customer.status }    
     return JsonResponse(data)
 
 def delete_customer(request, customer_id):
