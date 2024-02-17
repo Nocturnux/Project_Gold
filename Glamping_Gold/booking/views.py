@@ -31,7 +31,7 @@ def create_booking(request):
             date_start=date_start,
             date_end=date_end,
             value=request.POST['totalValue'],
-            status='Reservado',
+            state_booking='Reservado',
             customer_id=request.POST['customer']
         )
         booking.save()        
@@ -70,7 +70,7 @@ def detail_booking(request, booking_id):
 
 def change_status_booking(request, booking_id):
     booking = Booking.objects.get(pk=booking_id)
-    booking.status = not booking.status
+    booking.state_booking = not booking.state_booking
     booking.save()
     return redirect('booking')
 
